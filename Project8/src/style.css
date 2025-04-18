@@ -1,0 +1,103 @@
+/* style.css */
+:root {
+    --color-bg: #121212;
+    --color-surface: #424242;
+    --color-highlight: #DCEDC8;
+    --text-light: #FFFFFF;
+    --text-dark: #000000;
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    background: var(--color-bg);
+    color: var(--text-light);
+    font-family: sans-serif;
+    line-height: 1.5;
+    padding: 2rem;
+}
+
+.accordion-card {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    transition: transform 0.2s ease;
+}
+
+.accordion-card:hover {
+    transform: translateY(-2px);
+}
+
+.accordion-card .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    background: var(--color-surface);
+    transition: background 0.3s ease;
+}
+
+.accordion-card .header:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.accordion-card .header .title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.accordion-card .icon {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-card .icon.rotate {
+    transform: rotate(180deg);
+}
+
+.accordion-card .content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    opacity: 0;
+    transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
+}
+
+.accordion-card .content.active {
+    max-height: 200px;
+    padding: 1rem 1.5rem 1.5rem;
+    background: var(--color-highlight);
+    opacity: 1;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.accordion-card .content.active .card-info {
+    color: var(--text-dark);
+    animation: slideDown 0.4s ease forwards;
+}
+
+.accordion-card .card-info {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1rem;
+}
