@@ -1,0 +1,54 @@
+/* 1) Global Reset & Full‑Screen Setup */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* no scrollbars */
+}
+
+/* 2) Centering Container */
+.container {
+    display: flex;
+    /* make this a flex container */
+    justify-content: center;
+    /* center horizontally */
+    align-items: center;
+    /* center vertically */
+    width: 100vw;
+    /* full viewport width */
+    height: 100vh;
+    /* full viewport height */
+    transition: background-color 0.4s ease;
+    /* animate bg changes */
+}
+
+/* 3) Input Styling */
+.container input[type="text"] {
+    width: 200px;
+    padding: 10px 16px;
+    border: 2px solid #1a1a1a;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #1a1a1a;
+    font-size: 1rem;
+    outline: none;
+    /* If you want to animate width too: */
+    transition: width 0.4s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 4) Icon Styling */
+.container svg {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    /* matches your default textColor */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.container svg:hover {
+    transform: scale(1.2);
+    /* subtle hover pop */
+}
