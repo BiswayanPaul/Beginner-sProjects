@@ -1,0 +1,258 @@
+/* Root variables for consistent theming */
+:root {
+    --bg-container: #1f1d36;
+    /* Deep purple background */
+    --bg-input: #2e2a46;
+    /* Slightly lighter input background */
+    --bg-key: #457b9d;
+    /* Distinct blue number keys */
+    --bg-op: #f4a261;
+    /* Warm orange operator keys */
+    --text-op: #2c3e50;
+    /* Dark text for operator keys */
+    --bg-equal: #00ff00;
+    /* Pure green equal key */
+    --text-equal: #000000;
+    /* Dark text for equal key */
+    --rgb-equal: 0, 255, 0;
+    /* RGB for glow */
+    --bg-clear: #ff0000;
+    /* Pure red clear key */
+    --text-main: #f8f8f2;
+    /* Main text color */
+    --gap: 10px;
+    --radius: 8px;
+    --btn-size: 70px;
+    --transition: 0.2s ease-in-out;
+}
+
+/* Global animations */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(var(--rgb-equal), 0.6);
+    }
+}
+
+/* Reset box-sizing for consistency */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+    overflow: hidden;
+}
+
+/* Calculator container */
+.calculator {
+    display: grid;
+    width: 300px;
+    padding: var(--gap);
+    background: var(--bg-container);
+    border-radius: var(--radius);
+    gap: var(--gap);
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: var(--btn-size);
+    grid-template-areas:
+        "input input input input"
+        "clear divide multiply subtract"
+        "seven eight nine add"
+        "four five six decimal"
+        "one two three equal"
+        "zero double double equal";
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Input display */
+.calculator input {
+    grid-area: input;
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 2rem;
+    text-align: right;
+    padding: 0 16px;
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+    transition: box-shadow var(--transition);
+}
+
+.calculator input:focus {
+    outline: none;
+    box-shadow: inset 0 3px 6px rgba(69, 123, 157, 0.8);
+}
+
+/* Button styling */
+.calculator span {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-key);
+    color: var(--text-main);
+    font-size: 1.5rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.calculator span:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.calculator span:active {
+    animation: pulse 0.3s;
+}
+
+/* Ripple effect on click */
+.calculator span::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.4s, opacity 0.8s;
+}
+
+.calculator span:active::after {
+    opacity: 1;
+    transform: scale(1);
+    transition: 0s;
+}
+
+/* Specific button areas and colors */
+.clear {
+    grid-area: clear;
+    background: var(--bg-clear) !important;
+}
+
+.divide,
+.multiply,
+.subtract,
+.add,
+.decimal {
+    background: var(--bg-op) !important;
+    color: var(--text-op) !important;
+}
+
+.divide {
+    grid-area: divide;
+}
+
+.multiply {
+    grid-area: multiply;
+}
+
+.subtract {
+    grid-area: subtract;
+}
+
+.add {
+    grid-area: add;
+}
+
+.decimal {
+    grid-area: decimal;
+}
+
+.equal {
+    grid-area: equal;
+    background: var(--bg-equal) !important;
+    color: var(--text-equal) !important;
+    grid-row: span 2;
+    animation: glow 2s infinite;
+}
+
+.zero {
+    grid-area: zero;
+    background: var(--bg-key) !important;
+}
+
+.double {
+    grid-area: double;
+    background: var(--bg-key) !important;
+    grid-column: span 2;
+}
+
+.seven {
+    grid-area: seven;
+}
+
+.eight {
+    grid-area: eight;
+}
+
+.nine {
+    grid-area: nine;
+}
+
+.four {
+    grid-area: four;
+}
+
+.five {
+    grid-area: five;
+}
+
+.six {
+    grid-area: six;
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+
+.three {
+    grid-area: three;
+}
