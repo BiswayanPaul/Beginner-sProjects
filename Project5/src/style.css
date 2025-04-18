@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* --------------------------------------------------------------------------
+   Base Reset & Global Settings
+   - Remove default margins/padding
+   - Apply futuristic font
+   - Smooth color transitions
+   - Hide any scrollbar
+   -------------------------------------------------------------------------- */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Orbitron', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+    /* No horizontal scroll */
+    overflow-y: hidden;
+    /* No vertical scroll */
+}
+
+/* Hide native WebKit scrollbars completely */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Root Flex Container
+   - Full viewport height
+   - Center children both vertically & horizontally
+   -------------------------------------------------------------------------- */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: inherit;
+    color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Content Section
+   - Center text
+   - Padding for breathing room
+   -------------------------------------------------------------------------- */
+.content {
+    text-align: center;
+    padding: 20px;
+}
+
+.content h1 {
+    font-size: 3.5rem;
+    line-height: 1.3;
+    margin: 0;
+    transition: color 0.4s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Button Styling
+   - Transparent default with bold border
+   - Smooth hover/focus/active states
+   -------------------------------------------------------------------------- */
+button {
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 20px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    border: 2px solid currentColor;
+}
+
+button:hover {
+    /* Override inline React styles to ensure contrast */
+    background-color: #ffa31a !important;
+    color: #1b1b1b !important;
+    border-color: #ffa31a !important;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ffa31a;
+}
+
+button:active {
+    transform: scale(0.96);
+}
